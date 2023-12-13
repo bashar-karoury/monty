@@ -6,10 +6,16 @@
 #include <stdio.h>
 #include <string.h>
 #include "strings.h"
-char **av;
+#include "instruction.h"
+monty_info_t info = {
+	NULL,
+	0,
+	0
+};
 void free_av(void);
 int parse_line(char *line);
 void end_with_null(char *s);
+void handle_instruction(stack_t **stack, unsigned int line_number);
 /**
  * main - Entry point of monty program
  * @argc: count of arguments
@@ -22,7 +28,8 @@ int main(int argc, char **argv)
 	FILE *fstream;
 	char *line = NULL;
 	/*	int result = 0; */
-	int i = 0;
+	unsigned int line_number = 1;
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
@@ -42,28 +49,27 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	av = malloc(sizeof(char *) * 10);
+	info.av = malloc(sizeof(char *) * 10);
 
-	if (av == NULL)
+	if (info.av == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(line);
 		exit(EXIT_FAILURE);
 	}
-	while (fgets(line, 1000, fstream))
+	while (fgets(line, 1000, fstream) && (info.l_ins_exit_code == 0))
 	{
 		end_with_null(line);
-		printf("line : %s\n", line);
 		if (parse_line(line) != 0)
 		{
-			for (i = 0; av[i] != NULL; i++)
-				printf("av[%d] = %s\n", i, av[i]);
+			handle_instruction(&stack, line_number);
 		}
 		free_av();
+		line_number++;
 	}
 	printf("DEBUG: EOF\n");
 	free(line);
-	free(av);
+	free(info.av);
 	fclose(fstream);
 	return (0);
 }
@@ -82,11 +88,12 @@ int	parse_line(char *line)
 	token = strtok(line, " ");
 	while (token)
 	{
-		av[i] = _strdup(token);
+		(info.av)[i] = _strdup(token);
 		token = strtok(NULL, " ");
+		/* May check malloc result after strdupping*/
 		i++;
 	}
-	av[i] = NULL;
+	(info.av)[i] = NULL;
 	return (i);
 }
 
@@ -97,8 +104,8 @@ void free_av(void)
 {
 	int i = 0;
 
-	while (av[i] != NULL)
-		free(av[i++]);
+	while ((info.av)[i] != NULL)
+		free((info.av)[i++]);
 }
 
 /**
@@ -111,4 +118,35 @@ void end_with_null(char *s)
 		s++;
 	if (*(--s) == '\n')
 		*(s) = '\0';
+}
+
+
+/**
+ * handle_instruction - handle instruction and process it appriopriately
+ * @line_number: number of instruction to be execute
+*/
+void handle_instruction(stack_t **stack, unsigned int line_number)
+{
+	int i = 0;
+	int found = 0;
+	const instruction_t array_of_ins[NO_INS] = {{"push", push}, {"pall", pall},
+		 {"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}};
+	
+	/*check if instruction is valid*/
+	for (i = 0; i < NO_INS; i++)
+	{	
+		if (strcmp(array_of_ins[i].opcode, (info.av[0])) == 0)
+		{
+			(array_of_ins[i].f)(stack, line_number);
+			found = 1;
+			break;
+		}
+	}
+
+	if (!(found))
+	{
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, info.av[0]);
+		info.l_ins_exit_code = EXIT_FAILURE;
+	}
+
 }
