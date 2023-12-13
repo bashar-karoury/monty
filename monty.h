@@ -31,5 +31,17 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct monty_info_s - struct contains info to be used by functions
+ * @av: array of instruction words
+ * @is_stack: 0 if stack, 1 if queue
+ * @l_ins_exit_code: exit code of last instruction
+*/
+struct monty_info_s
+{
+	char **av;
+	char is_stack;
+	char l_ins_exit_code;
+};
 
 #endif
