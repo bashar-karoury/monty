@@ -138,7 +138,7 @@ void handle_instruction(stack_t **stack, unsigned int line_number)
 	const instruction_t array_of_ins[NO_INS] = {{"push", push}, {"pall", pall},
 		{"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop},
 		{"sub", sub}, {"div", divide}, {"mul", mul}, {"mod", mod},
-		{"pchar", pchar}, {"pstr", pstr}};
+		{"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl},  {"rotr", rotr}};
 
 	/*check if instruction is valid*/
 	for (i = 0; i < NO_INS; i++)

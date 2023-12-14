@@ -87,6 +87,7 @@ int pop_from_start(stack_t **head)
 	result = (*head)->n;
 	freed = *head;
 	*head = (*head)->next;
+	(*head)->prev = NULL;
 	free(freed);
 	return (result);
 }

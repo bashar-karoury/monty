@@ -64,3 +64,30 @@ stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index)
 	else
 		return (head);
 }
+
+/**
+ * add_to_start - add node to start of stack
+ * @head: double pointer to head of stack
+ * @n: int to be stored in node
+ *
+ * Return: pointer to added node
+ */
+stack_t *add_to_start(stack_t **head, int n)
+{
+	stack_t *new;
+
+	if (head == NULL)
+		return (NULL);
+
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+		return (NULL);
+
+	new->n = n;
+	new->prev = NULL;
+	new->next = *head;
+	if (*head)
+		(*head)->prev = new;
+	*head = new;
+	return (new);
+}
