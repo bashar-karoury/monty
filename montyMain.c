@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 		fclose(fstream);
 		exit(EXIT_FAILURE);
 	}
-	info.av = malloc(sizeof(char *) * 10);
+	info.av = malloc(sizeof(char *) * 100);
 
 	if (info.av == NULL)
 	{
