@@ -1,4 +1,4 @@
-#include "strings.h"
+#include "monty.h"
 #include <unistd.h>
 /**
  * _strlen - resets *n to 98

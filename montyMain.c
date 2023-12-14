@@ -5,9 +5,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "strings.h"
-#include "instruction.h"
-#include "stack_operations.h"
 monty_info_t info = {
 	NULL,
 	0,

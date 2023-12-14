@@ -1,7 +1,6 @@
-#include "stack_operations.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include "monty.h"
 
 
 /**

@@ -1,9 +1,6 @@
-#include "instruction.h"
 #include <stdio.h>
-#include "tools.h"
-#include "stack_operations.h"
 #include <stdlib.h>
-
+#include "monty.h"
 /**
  * pall - print all stack
  * @stack: double pointer to head node of stack

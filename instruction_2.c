@@ -1,7 +1,6 @@
-#include "instruction.h"
 #include <stdio.h>
-#include "stack_operations.h"
 #include <stdlib.h>
+#include "monty.h"
 /**
  * swap - swap two top elements of stack
  * @stack: double pointer to head node of stack

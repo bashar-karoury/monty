@@ -1,6 +1,4 @@
-#include "tools.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "monty.h"
 /**
  * integer - check if ascii string is int or not and convert it if it is
  * @ascii_int: string

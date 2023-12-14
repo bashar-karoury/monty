@@ -1,6 +1,4 @@
-#include "strings.h"
-#include <stdlib.h>
-
+#include "monty.h"
 /**
  * _strdup - created duplicate to string
  * @str: char pointer to string to be duplicated
