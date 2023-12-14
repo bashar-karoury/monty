@@ -40,7 +40,7 @@ int integer(char *ascii_int, int *n)
  *
  *Return: 1 if true, 0 if false
  */
-int is_ascii(n)
+int is_ascii(int n)
 {
 	int result = 1;
 

@@ -90,7 +90,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 			node = get_dnodeint_at_index(*stack, len - 1);
 			if (is_ascii(node->n))
 			{
-				printf("%c\n", char(node->n));
+				printf("%c\n", (char)node->n);
 			}
 			else
 			{
