@@ -13,7 +13,7 @@ int integer(char *ascii_int, int *n)
 
 	while (*ptr)
 	{
-		if (ptr == ascii_int && *ptr == '-')
+		if (ptr == ascii_int && (*ptr == '-' || *ptr == '+'))
 		{
 			ptr++;
 			continue;
