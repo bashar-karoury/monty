@@ -1,5 +1,6 @@
 #ifndef _MONTE_H_
 #define _MONTE_H_
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -43,5 +44,5 @@ typedef struct monty_info_s
 	char is_stack;
 	char l_ins_exit_code;
 } monty_info_t;
-
+extern monty_info_t info;
 #endif

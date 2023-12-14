@@ -47,7 +47,7 @@ void pop(stack_t **stack, unsigned int line_number)
 {
 	if (stack && *stack)
 	{
-		pop_from_end(stak);
+		pop_from_end(stack);
 	}
 	else
 	{

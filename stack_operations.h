@@ -9,4 +9,5 @@ int get_len(stack_t *head);
 void print_stack(stack_t *head);
 void print_top_of_stack(stack_t *head);
 void free_stack(stack_t **head);
+stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
 #endif
