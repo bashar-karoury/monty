@@ -49,7 +49,7 @@ typedef struct monty_info_s
 extern monty_info_t info;
 
 /* Instructions functions definitions */
-#define NO_INS 15
+#define NO_INS 17
 
 void pall(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
@@ -66,6 +66,11 @@ void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, __attribute__ ((unused)) unsigned int line_number);
 void rotr(stack_t **stack, __attribute__ ((unused)) unsigned int line_number);
+void to_stack(stack_t **stack,
+		 __attribute__ ((unused)) unsigned int line_number);
+void to_queue(stack_t **stack,
+		 __attribute__ ((unused)) unsigned int line_number);
+
 /* Stack operations*/
 stack_t *add_to_end(stack_t **head, int n);
 int pop_from_end(stack_t **head);

@@ -33,3 +33,25 @@ void rotr(stack_t **stack, __attribute__ ((unused)) unsigned int line_number)
 		add_to_end(stack, n1);
 	}
 }
+/**
+ * to_stack - swtich to stack
+ * @stack: double pointer to head node of stack
+ * @line_number: line number of executions
+ */
+
+void to_stack(__attribute__ ((unused)) stack_t **stack,
+				 __attribute__ ((unused)) unsigned int line_number)
+{
+	info.is_stack = 0;
+}
+/**
+ * to_queue - swtich to queue
+ * @stack: double pointer to head node of stack
+ * @line_number: line number of executions
+ */
+
+void to_queue(__attribute__ ((unused)) stack_t **stack,
+				 __attribute__ ((unused)) unsigned int line_number)
+{
+	info.is_stack = 1;
+}

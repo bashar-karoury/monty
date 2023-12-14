@@ -13,24 +13,40 @@ void pall(stack_t **stack, __attribute__ ((unused)) unsigned int line_number)
 
 
 /**
-* push - push to stack
-* @stack: double pointer to head node of stack
-* @line_number: int as line number of execution
-*/
+ * push - push to stack
+ * @stack: double pointer to head node of stack
+ * @line_number: int as line number of execution
+ */
 void push(stack_t **stack, unsigned int line_number)
 {
 	int n = 0;
 
 	if (info.av[1] && integer(info.av[1], &n))
 	{
-		if (!add_to_end(stack, n))
+		if (info.is_stack == 0)
 		{
-			fprintf(stderr, "Error: malloc failed\n");
-			info.l_ins_exit_code = EXIT_FAILURE;
+			if (!add_to_end(stack, n))
+			{
+				fprintf(stderr, "Error: malloc failed\n");
+				info.l_ins_exit_code = EXIT_FAILURE;
+			}
+			else
+			{
+				info.l_ins_exit_code = 0;
+			}
 		}
 		else
 		{
-			info.l_ins_exit_code = 0;
+			if (!add_to_start(stack, n))
+			{
+				fprintf(stderr, "Error: malloc failed\n");
+				info.l_ins_exit_code = EXIT_FAILURE;
+			}
+			else
+			{
+				info.l_ins_exit_code = 0;
+			}
+
 		}
 	}
 	else
@@ -42,16 +58,19 @@ void push(stack_t **stack, unsigned int line_number)
 
 }
 /**
-* pop - pop top of stack
-* @stack: double pointer to head node of stack
-* @line_number: int as line number of execution
-*/
+ * pop - pop top of stack
+ * @stack: double pointer to head node of stack
+ * @line_number: int as line number of execution
+ */
 
 void pop(stack_t **stack, unsigned int line_number)
 {
 	if (stack && *stack)
 	{
-		pop_from_end(stack);
+		if (info.is_stack == 0)
+			pop_from_end(stack);
+		else
+			pop_from_start(stack);
 	}
 	else
 	{
@@ -60,10 +79,10 @@ void pop(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
-* pint- print top of stack
-* @stack: double pointer to head node of stack
-* @line_number: int as line number of execution
-*/
+ * pint- print top of stack
+ * @stack: double pointer to head node of stack
+ * @line_number: int as line number of execution
+ */
 
 void pint(stack_t **stack, unsigned int line_number)
 {
