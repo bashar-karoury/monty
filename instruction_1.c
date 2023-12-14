@@ -25,7 +25,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		if (!add_to_end(stack, n))
 		{
-			fprintf(stderr, "Error: malloc failed\n", line_number);
+			fprintf(stderr, "Error: malloc failed\n");
 			info.l_ins_exit_code = EXIT_FAILURE;
 		}
 		else
