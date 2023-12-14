@@ -58,13 +58,13 @@ void mod(stack_t **stack, unsigned int line_number)
 			}
 			else
 			{
-				n2->n = n2->n % n1->n;
+				n2->n = (n2->n) % (n1->n);
 				pop_from_end(stack);
 			}
 		}
 		else
 		{
-			fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
+			fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
 			info.l_ins_exit_code = EXIT_FAILURE;
 
 		}
