@@ -13,6 +13,12 @@ int integer(char *ascii_int, int *n)
 
 	while (*ptr)
 	{
+		if (ptr == ascii_int && *ptr == '-')
+		{
+			ptr++;
+			continue;
+		}
+
 		if (((*ptr) < '0') || (*ptr > '9'))
 		{
 			check = 0;
