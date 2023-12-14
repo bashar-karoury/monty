@@ -89,6 +89,11 @@ int	parse_line(char *line)
 	while (token)
 	{
 		(info.av)[i] = _strdup(token);
+		if (((info.av)[i])[0] == '#')
+		{
+			free(((info.av)[i]));
+			break;
+		}
 		token = strtok(NULL, " ");
 		/* May check malloc result after strdupping*/
 		i++;
