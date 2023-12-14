@@ -70,3 +70,40 @@ void mod(stack_t **stack, unsigned int line_number)
 		}
 	}
 }
+
+
+/**
+ * pchar -  prints the char at the top of the stack
+ * @stack: double pointer to head node of stack
+ * @line_number: line number of executions
+ */
+
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	int len;
+	stack_t *node;
+
+	if (stack)
+	{
+		if (*stack)
+		{	len =  get_len(*stack);
+			node = get_dnodeint_at_index(*stack, len - 1);
+			if (is_ascii(node->n))
+			{
+				printf("%c\n", char(node->n));
+			}
+			else
+			{
+				fprintf(stderr, "L%d: can't pchar, value out of range\n",
+														line_number);
+				info.l_ins_exit_code = EXIT_FAILURE;
+			}
+		}
+		else
+		{
+			fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+			info.l_ins_exit_code = EXIT_FAILURE;
+
+		}
+	}
+}

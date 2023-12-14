@@ -33,3 +33,18 @@ int integer(char *ascii_int, int *n)
 
 	return (check);
 }
+
+/**
+ * is_ascii - check if int is in range of ascii characters
+ * @n: ascii integer
+ *
+ *Return: 1 if true, 0 if false
+ */
+int is_ascii(n)
+{
+	int result = 1;
+
+	if (n > 177 || n < 0)
+		result = 0;
+	return (result);
+}
