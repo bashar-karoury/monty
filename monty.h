@@ -37,11 +37,11 @@ typedef struct instruction_s
  * @is_stack: 0 if stack, 1 if queue
  * @l_ins_exit_code: exit code of last instruction
 */
-struct monty_info_s
+typedef struct monty_info_s
 {
 	char **av;
 	char is_stack;
 	char l_ins_exit_code;
-};
+} monty_info_t;
 
 #endif
