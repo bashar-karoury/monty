@@ -44,7 +44,7 @@ int is_ascii(int n)
 {
 	int result = 1;
 
-	if (n > 177 || n < 0)
+	if (n > 127 || n < 0)
 		result = 0;
 	return (result);
 }
