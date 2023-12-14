@@ -20,7 +20,7 @@ void handle_instruction(stack_t **stack, unsigned int line_number);
  * @argv: pointer to arguments string
  *
  * Return: Exit code of program
-*/
+ */
 int main(int argc, char **argv)
 {
 	FILE *fstream;
@@ -45,6 +45,7 @@ int main(int argc, char **argv)
 	if (line == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		fclose(fstream);
 		exit(EXIT_FAILURE);
 	}
 	info.av = malloc(sizeof(char *) * 10);
@@ -53,6 +54,7 @@ int main(int argc, char **argv)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(line);
+		fclose(fstream);
 		exit(EXIT_FAILURE);
 	}
 	while (fgets(line, 1000, fstream) && (info.l_ins_exit_code == 0))
@@ -97,7 +99,7 @@ int	parse_line(char *line)
 
 /**
  * free_av - frees memory of elements in array av
-*/
+ */
 void free_av(void)
 {
 	int i = 0;
@@ -109,7 +111,7 @@ void free_av(void)
 /**
  * end_with_null - end string with null terminator instead of newline
  * @s: string
-*/
+ */
 void end_with_null(char *s)
 {
 	while (*s != '\0')
@@ -123,13 +125,13 @@ void end_with_null(char *s)
  * handle_instruction - handle instruction and process it appriopriately
  * @stack: double pointer to stack
  * @line_number: number of instruction to be execute
-*/
+ */
 void handle_instruction(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 	int found = 0;
 	const instruction_t array_of_ins[NO_INS] = {{"push", push}, {"pall", pall},
-		 {"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}};
+		{"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}};
 
 	/*check if instruction is valid*/
 	for (i = 0; i < NO_INS; i++)
