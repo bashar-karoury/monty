@@ -20,3 +20,23 @@ int get_len(stack_t *head)
 	}
 	return (result);
 }
+/**
+ * free_stack - frees memory occupied by stack
+ * @head: double pointer to stack
+ */
+void free_stack(stack_t **head)
+{
+	stack_t *freed, *trav;
+
+	if (head != NULL)
+	{
+		trav = *head;
+		while (trav != NULL)
+		{
+			freed = trav;
+			trav = trav->next;
+			free(freed);
+		}
+		*head = NULL;
+	}
+}

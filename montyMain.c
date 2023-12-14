@@ -7,6 +7,7 @@
 #include <string.h>
 #include "strings.h"
 #include "instruction.h"
+#include "stack_operations.h"
 monty_info_t info = {
 	NULL,
 	0,
@@ -67,11 +68,11 @@ int main(int argc, char **argv)
 		free_av();
 		line_number++;
 	}
-	printf("DEBUG: EOF\n");
 	free(line);
 	free(info.av);
+	free_stack(&stack);
 	fclose(fstream);
-	return (0);
+	return (info.l_ins_exit_code);
 }
 
 /**
@@ -123,6 +124,7 @@ void end_with_null(char *s)
 
 /**
  * handle_instruction - handle instruction and process it appriopriately
+ * @stack: double pointer to stack
  * @line_number: number of instruction to be execute
 */
 void handle_instruction(stack_t **stack, unsigned int line_number)
@@ -131,10 +133,10 @@ void handle_instruction(stack_t **stack, unsigned int line_number)
 	int found = 0;
 	const instruction_t array_of_ins[NO_INS] = {{"push", push}, {"pall", pall},
 		 {"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}};
-	
+
 	/*check if instruction is valid*/
 	for (i = 0; i < NO_INS; i++)
-	{	
+	{
 		if (strcmp(array_of_ins[i].opcode, (info.av[0])) == 0)
 		{
 			(array_of_ins[i].f)(stack, line_number);
