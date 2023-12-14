@@ -10,6 +10,7 @@ int integer(char *ascii_int, int *n)
 {
 	char *ptr = ascii_int;
 	int check = 1;
+
 	while (*ptr)
 	{
 		if (((*ptr) < '0') || (*ptr > '9'))
