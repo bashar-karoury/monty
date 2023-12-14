@@ -23,8 +23,15 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (info.av[1] && integer(info.av[1], &n))
 	{
-		add_to_end(stack, n);
-		info.l_ins_exit_code = 0;
+		if (!add_to_end(stack, n))
+		{
+			fprintf(stderr, "Error: malloc failed\n", line_number);
+			info.l_ins_exit_code = EXIT_FAILURE;
+		}
+		else
+		{
+			info.l_ins_exit_code = 0;
+		}
 	}
 	else
 	{
