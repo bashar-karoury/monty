@@ -107,3 +107,36 @@ void pchar(stack_t **stack, unsigned int line_number)
 		}
 	}
 }
+/**
+ * pstr - prints the string starting at the top of the stack
+ * @stack: double pointer to head node of stack
+ * @line_number: line number of executions
+ */
+
+void pstr(stack_t **stack, __attribute__ ((unused)) unsigned int line_number)
+{
+	stack_t *node;
+
+	if (stack)
+	{
+		if (*stack)
+		{
+			node = *stack;
+			while (node->next != NULL)
+				node = node->next;
+			/* Now we are at top of stack*/
+			while (node != NULL && node->n)
+			{
+				if (!is_ascii(node->n))
+					break;
+				printf("%c", (char)node->n);
+				node = node->prev;
+			}
+			printf("\n");
+		}
+		else
+		{
+			printf("\n");
+		}
+	}
+}
