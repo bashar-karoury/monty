@@ -49,7 +49,6 @@ void add(stack_t **stack, unsigned int line_number)
 		{
 			n1 = get_dnodeint_at_index(*stack, len - 1);
 			n2 = get_dnodeint_at_index(*stack, len - 2);
-			n1->n = n2->n;
 			n2->n = n1->n + n2->n;
 			pop_from_end(stack);
 		}
