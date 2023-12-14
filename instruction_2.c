@@ -71,4 +71,5 @@ void nop(__attribute__ ((unused)) stack_t **stack,
 		__attribute__ ((unused))  unsigned int line_number)
 {
 
+			info.l_ins_exit_code = EXIT_SUCCESS;
 }
