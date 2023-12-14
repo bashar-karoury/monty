@@ -11,6 +11,9 @@ int integer(char *ascii_int, int *n)
 	char *ptr = ascii_int;
 	int check = 1;
 
+	if (*ptr == '\0')
+		return (0);
+
 	while (*ptr)
 	{
 		if (ptr == ascii_int && (*ptr == '-' || *ptr == '+'))
@@ -26,6 +29,9 @@ int integer(char *ascii_int, int *n)
 		}
 		ptr++;
 	}
+
+	if ((*(ptr - 1) == '-' || *(ptr - 1) == '+'))
+		return (0);
 	if (check)
 	{
 		*n = atoi(ascii_int);
